@@ -11,8 +11,8 @@ import (
 )
 
 const (
-	gitlabURL      = "https://gitlab.eng.vmware.com"
-	projectId      = "13032"
+	gitlabURL      = "https://gitlab.com"
+	projectId      = "1234"
 	con_legend =`
 | Score  | Label  | Description |
 | ------ | ------ | ----------- |
@@ -89,7 +89,7 @@ func update_mr(mr_id string, description string, old_desc string) {
 	requestBody, _ := json.Marshal(body)
 
 	// Create the request
-	url := fmt.Sprintf("https://gitlab.eng.vmware.com/api/v4/projects/13032/merge_requests/%s", mr_id)
+	url := fmt.Sprintf("https://gitlab.com/api/v4/projects/13032/merge_requests/%s", mr_id)
 	request, _ := http.NewRequest(http.MethodPut, url, bytes.NewBuffer(requestBody))
 	request.Header.Add("Content-Type", "application/json")
 	request.Header.Add("Authorization", fmt.Sprintf("Bearer %s", gitlabToken))
@@ -115,7 +115,7 @@ func get_mr_desc(mr_id string) string {
 	
 	// Set up the API request
 	gitlabToken:=os.Getenv("GITLAB_TOKEN")
-	url := fmt.Sprintf("https://gitlab.eng.vmware.com/api/v4/projects/13032/merge_requests/%s", mr_id)
+	url := fmt.Sprintf("https://gitlab.com/api/v4/projects/13032/merge_requests/%s", mr_id)
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		panic(err)
